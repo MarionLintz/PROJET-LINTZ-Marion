@@ -1,0 +1,57 @@
+App\Models\Produits:
+    type: entity
+    table: produits
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        breed:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        gender:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        birth:
+            type: date
+            nullable: false
+        color:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+        height:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+        weight:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+        description:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

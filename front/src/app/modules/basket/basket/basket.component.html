@@ -1,0 +1,27 @@
+<div class="list-group mt-3" *ngIf="(listProduct|async).size > 0 ; else empty;">
+    <div class="list-group-item list-group-item-action" *ngFor="let item of (listProduct | async) | keyvalue">
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <span class="badge badge-light big-text">{{item.value}}</span>
+                </div>
+                <div class="col-sm-9">
+                    <h5 class="mb-1">{{item.key.Name}}</h5>
+                    <small class="text-muted"> {{item.key.Birth | date: 'shortDate'}}</small>
+                    <p class="mb-1"> {{ item.key.Breed }} </p>
+                </div>
+                <div class="col-sm-2">
+                    <button *ngIf="item.value > 1" type="button" class="btn btn-dark" (click)="removeFromBasket(item.key.Id)">Tous les
+                        retirer du panier</button>
+                    <button *ngIf="item.value == 1" type="button" class="btn btn-dark" (click)="removeFromBasket(item.key.Id)">Retirer du
+                        panier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #empty>
+    <div class="alert alert-info m-3" role="alert">
+        Votre panier est vide !
+    </div>
+</ng-template>

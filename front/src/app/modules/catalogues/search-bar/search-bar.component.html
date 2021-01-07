@@ -1,0 +1,42 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Filtrer par</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" 
+            [(ngModel)]="selectedFilterValue" (ngModelChange)="detailFilterValue = ''; OnFilterSelectedChange()">
+            <option value="" selected>Chosissez</option>
+            <option value="gender">Genre</option>
+            <option value="breed">Race</option>
+            <option value="name">Nom</option>
+        </select>
+    </div>
+
+    <div *ngIf="selectedFilterValue === 'gender'" class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Genre</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" 
+        [(ngModel)]="detailFilterValue"(ngModelChange)="OnFilterSelectedChange()">
+            <option value="" selected>Tous</option>
+            <option value="M">Mâle</option>
+            <option value="F">Femelle</option>
+        </select>
+    </div>
+
+    <div *ngIf="selectedFilterValue === 'breed'" class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Race</label>
+        </div>
+        <input [(ngModel)]="detailFilterValue" (ngModelChange)="OnFilterSelectedChange()"
+            type="text" class="form-control" placeholder="Rechercher une race" aria-describedby="basic-addon1">
+    </div>
+
+    <div *ngIf="selectedFilterValue === 'name'" class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Nom</label>
+        </div>
+        <input [(ngModel)]="detailFilterValue" (ngModelChange)="OnFilterSelectedChange()" type="text" class="form-control"
+            placeholder="Rechercher un nom" aria-describedby="basic-addon1">
+    </div>
+</nav>

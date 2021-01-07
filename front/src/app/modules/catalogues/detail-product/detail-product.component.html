@@ -1,0 +1,17 @@
+<div class="card m-5">
+    <div class="card-body">
+        <h5>{{(detailedProduct|async)?.Name}}</h5>
+        <p class="mt-4"><span class="font-weight-bold">Race :</span> {{ (detailedProduct|async)?.Breed }} </p>
+        <p><span class="font-weight-bold">Genre :</span> {{ (detailedProduct|async)?.Gender | getGender }} </p>
+        <p><span class="font-weight-bold">Date de naissance :</span> {{ (detailedProduct|async)?.Birth | date: 'shortDate'}} </p>
+        <p><span class="font-weight-bold">Couleur :</span> {{ (detailedProduct|async)?.Color }} </p>
+        <p><span class="font-weight-bold">Taille (en cm):</span> {{ (detailedProduct|async)?.Height }} </p>
+        <p><span class="font-weight-bold">Weight (en kg):</span> {{ (detailedProduct|async)?.Weight }} </p>
+        <p><span class="font-weight-bold">Description :</span> {{ (detailedProduct|async)?.Description }} </p>
+    </div>
+
+    <div class="m-3">
+        <button type="button" class="btn btn-dark mr-2" (click)="addProductToBasket()">Ajouter au panier</button>
+        <button type="button" class="btn btn-info" [routerLink]="['/catalogue']">Retour au catalogue</button>
+    </div>
+</div>

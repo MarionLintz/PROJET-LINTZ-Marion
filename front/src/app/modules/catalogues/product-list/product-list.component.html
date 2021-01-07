@@ -1,0 +1,23 @@
+<app-search-bar (onFilterChange)="onFilterChange($event)"></app-search-bar>
+
+<div class="list-group">
+    <div class="list-group-item list-group-item-action" *ngFor="let item of listFilteredProductObs | async">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+                {{item.Name}}
+            </h5>
+            <small class="text-muted">{{item.Birth | date: 'shortDate'}}</small>
+        </div>
+        
+        <div class="d-flex w-100 justify-content-between">
+            <p class="mb-1"> {{ item.Breed }} </p>
+            <button type="button" class="btn btn-dark" (click)="addProductToBasket(item)">Ajouter au panier</button>
+        </div>
+
+        <div class="d-flex w-100 justify-content-between mt-3">
+            <small class="text-muted">{{ item.Gender | getGender }}</small>
+            <button type="button" class="btn btn-info" [routerLink]="['./detail', item.Id]" >Plus d'information</button>
+        </div>
+
+    </div>
+</div>
