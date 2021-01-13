@@ -47,7 +47,7 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
           case 401:
             this.store.dispatch(new CreateJwt({"token":""}));
             console.log(`Erreur 401`);
-            this.router.navigate(['/']);
+            this.router.navigateByUrl('/client-form/login');
             break;
       }
       return of(null);

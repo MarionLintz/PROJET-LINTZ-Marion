@@ -43,7 +43,7 @@ class UserController
 
             $payload = [
                 "iat" => $dateNow,
-                "exp" => $dateNow + 100,
+                "exp" => $dateNow + 1000000,
                 "user" => $user
             ];
 
