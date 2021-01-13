@@ -1,6 +1,6 @@
 
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetCurrentUser } from '../actions/authentication.action';
+import { LogoutCurrentUser, SetCurrentUser } from '../actions/authentication.action';
 import { AuthentificationStateModel } from '../models/authentication-state-model';
 import { User } from '../models/user';
 
@@ -26,4 +26,13 @@ export class AuthentificationState{
             currentUser: payload
         });
     }   
+
+    @Action(LogoutCurrentUser)
+    logout(
+        { patchState} : StateContext<AuthentificationStateModel>,
+    ) {
+        patchState({
+            currentUser: {} as User
+        });
+    } 
 }

@@ -18,7 +18,6 @@ constructor( private router: Router, private store :Store, private actions$: Act
 }
  
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {  
-  
   if (this.jwtToken != "") {
     req = req.clone({ setHeaders: { Authorization: `Bearer ${this.jwtToken}` }});
   }
@@ -30,11 +29,16 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
           let enteteAuthorization =  evt.headers.get("Authorization");
           if (enteteAuthorization != null ) {
             tab = enteteAuthorization.split(/Bearer\s+(.*)$/i);
-            if (tab.length > 1) {
-              this.jwtToken = tab [1];
-              this.store.dispatch(new CreateJwt({"token":this.jwtToken}));
-            }
-            console.log ("Bearer : " + this.jwtToken);
+              if(tab.length > 1){
+                this.jwtToken = tab[1];
+                this.store.dispatch(new CreateJwt({"token":this.jwtToken}));
+                console.log ("Bearer : " + this.jwtToken);
+              }
+              if(tab[0] === 'Bearer') {
+                this.deleteToken();
+                this.store.dispatch(new CreateJwt({"token":""}));
+                console.log ("Clear token");
+              }
           }
       }  
     }, 
@@ -50,7 +54,13 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
     }
     ));  
   }
+
+  deleteToken(){
+    this.jwtToken = "";
+  }
 }
+
+
 
 
 

@@ -17,7 +17,8 @@
             {{ (currentUser|async)?.Prenom }} {{ (currentUser|async)?.Nom }}
         </span>
         <button type="button" class="btn btn-light ml-3" [routerLink] = "['/client-form']">Créer un compte</button>
-        <button type="button" class="btn btn-light ml-3" [routerLink] = "['/client-form/login']">Se connecter</button>
+        <button type="button" class="btn btn-light ml-3" *ngIf="!(currentUser|async).Prenom" [routerLink] = "['/client-form/login']">Se connecter</button>
+        <button type="button" class="btn btn-light ml-3" *ngIf="(currentUser|async).Prenom" (click)="logout()">Se déconnecter</button>
         <button type="button" class="btn btn-dark" [routerLink] = "['/basket']">
             <svg width="25" height="25" viewBox="0 0 16 16" class="bi bi-basket text-white" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">

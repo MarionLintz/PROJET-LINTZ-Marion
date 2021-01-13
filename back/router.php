@@ -15,6 +15,8 @@ return function (App $app){
     });
     
     $app->group('/user', function (Group $group) {
+        $group->get('/ping', "App\Controllers\UserController:ping");
+        $group->get('/logout', "App\Controllers\UserController:logout");
         $group->post('/login', "App\Controllers\UserController:login");
         $group->post('/register', "App\Controllers\UserController:register");
     });

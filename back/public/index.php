@@ -21,8 +21,8 @@ $options = [
     "secure" => false,
     "algorithm" => ["HS256"],
     "secret" => $_ENV["JWT_SECRET"],
-    "path" => ["/user"],
-    "ignore" => ["/user/login", "/user/register"],
+    "path" => ["/user", "/products"],
+    "ignore" => ["/user/ping", "/user/login", "/user/register"],
     "error" => function ($response, $arguments) {
         $data = array('ERREUR' => 'Connexion', 'ERREUR' => 'JWT Non valide');
         $response = $response->withStatus(401);

@@ -10,6 +10,14 @@ use App\Models\Utilisateur;
 
 class UserController
 {
+    public function ping(Request $request, Response $response, array $args): Response
+    {
+        $response->getBody()->write(json_encode([
+                "value" => "pong"
+            ]));
+            return $response->withHeader("Content-Type", "application/json");
+    }
+    
     public function login(Request $request, Response $response, array $args): Response
     {
         global $entityManager;
@@ -56,6 +64,13 @@ class UserController
             ]));
             return $response->withHeader("Content-Type", "application/json");
         }
+    }
+
+    public function logout(Request $request, Response $response, array $args): Response
+    {
+        return $response
+                ->withHeader("Authorization", "Bearer ")
+                ->withHeader("Content-Type", "application/json");
     }
 
     public function register(Request $request, Response $response, array $args): Response

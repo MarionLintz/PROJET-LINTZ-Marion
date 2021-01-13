@@ -5,3 +5,9 @@ export class SetCurrentUser{
 
     constructor(public payload: User){}
 }
+
+export class LogoutCurrentUser{
+    static readonly type = '[CurrentUser] Logout';
+
+    constructor(){}
+}

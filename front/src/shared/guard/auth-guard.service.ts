@@ -13,7 +13,7 @@ export class AuthGuardService implements CanActivate {
     canActivate(): Observable<boolean> {
         return this.store.select(AuthentificationState.getCurrentUser).pipe(
             map((user: User) => {
-                if (!user)
+                if (!user.Nom)
                     this.router.navigateByUrl('/client-form/login');
 
                 return true;

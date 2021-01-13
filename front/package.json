@@ -1,13 +1,14 @@
 {
-  "name": "tp02",
+  "name": "projet",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start": "node static_server.js",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@ngxs/store": "^3.7.0",
     "bootstrap": "^4.5.2",
     "bootstrap-icons": "^1.0.0",
+    "express": "^4.17.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

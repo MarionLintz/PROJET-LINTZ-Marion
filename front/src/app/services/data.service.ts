@@ -12,7 +12,7 @@ import { Product } from 'src/shared/models/product';
   providedIn: 'root'
 })
 export class DataService {
-
+  
   httpOption = {
     headers: new HttpHeaders({
       'Content-Type': 'multipart/form-data'
@@ -71,6 +71,13 @@ export class DataService {
     return this.http.post<any>(this.constructUrltoAPI('/user/register'), this.getFormData(client))
     .pipe(
       catchError(err => this.handleError('/user/register', err))
+    );
+  }
+
+  Logout() : Observable<any>{
+    return this.http.get<any>(this.constructUrltoAPI('/user/logout'))
+    .pipe(
+      catchError(err => this.handleError('/user/logout', err))
     );
   }
 

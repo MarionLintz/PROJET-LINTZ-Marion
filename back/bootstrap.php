@@ -1,18 +1,24 @@
 <?php
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-date_default_timezone_set('America/Lima');
+// bootstrap.php
 require_once "vendor/autoload.php";
 
-$isDevMode = true;
-$config = Setup::createYAMLMetadataConfiguration(array(__DIR__ . "/config/yaml"), $isDevMode);
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 
-$conn = array(
-'host' => 'localhost',
-'driver' => 'pdo_mysql',
-'user' => 'root',
-'password' => '',
-'dbname' => 'e-commerce',
-'port' => '3306'
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$paths = array(__DIR__ . "/config/yaml");
+$isDevMode = false;
+
+$dbParams = array(
+    'driver'   => $_ENV["DB_DRIVER"],
+    'host'     => $_ENV["DB_HOST"],
+    'user'     => $_ENV["DB_USER"],
+    'password' => $_ENV["DB_PASSWORD"],
+    'dbname'   => $_ENV["DB_NAME"],
+    'port'     => $_ENV["DB_PORT"]
 );
-$entityManager = EntityManager::create($conn, $config);
+
+$config = Setup::createYAMLMetadataConfiguration($paths, $isDevMode);
+$entityManager = EntityManager::create($dbParams, $config);
